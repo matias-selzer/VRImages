@@ -893,5 +893,10 @@ PrefabInstance:
       propertyPath: jumpDelta
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 4326615703871543813, guid: a17eed532b9768e49a1f50f64f25b705,
+        type: 3}
+      propertyPath: url
+      value: D:\xampp2\htdocs\img\pictures3\
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a17eed532b9768e49a1f50f64f25b705, type: 3}
