@@ -103,10 +103,10 @@ public class LoadImageURL : MonoBehaviour
         string newUrl = url + imageName;
 
         //versión local
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://"+newUrl,false);
+        //UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://"+newUrl,false);
 
         //versión web
-        //UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://localhost:1234/img/pictures3/" + imageName, false);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://192.168.0.5:1234/img/pictures3/" + imageName, false);
 
         yield return www.SendWebRequest();
 
