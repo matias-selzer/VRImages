@@ -51,7 +51,7 @@ public class LoadImageURL : MonoBehaviour
 
     private string Truncate(float f)
     {
-        return (Mathf.Floor(f / jumpDelta) * jumpDelta) + "";
+        return ((Mathf.Floor(f / jumpDelta) * jumpDelta) + "").Replace('.', ',');
     }
 
 
