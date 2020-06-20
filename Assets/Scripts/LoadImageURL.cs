@@ -12,6 +12,8 @@ public class LoadImageURL : MonoBehaviour
     public float jumpDelta;
     public Transform target;
 
+    private Texture2D t000,t001,t010,t011,t100,t101,t110,t111;
+
 
     // Start is called before the first frame update
     void Start()
@@ -103,10 +105,10 @@ public class LoadImageURL : MonoBehaviour
         string newUrl = url + imageName;
 
         //versión local
-        //UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://"+newUrl,false);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://"+newUrl,false);
 
         //versión web
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://192.168.0.5:1234/img/pictures3/" + imageName, false);
+        //UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://192.168.0.5:1234/img/pictures3/" + imageName, false);
 
         yield return www.SendWebRequest();
 
