@@ -142,7 +142,10 @@
 			float s = t * t;
 			salida= 0.5 * s * s * t + o;
 			*/
-			
+						
+			float x = _x;
+			float y = _y;
+			float z = _z;
 			//float x = expoInOut(_x);
 			//float y = expoInOut(_y);
 			//float z = expoInOut(_z);
@@ -153,15 +156,15 @@
 			//float y = backInOut(_y);
 			//float z = backInOut(_z);
 
-            fixed4 col_d00 = lerp(tex2D(_Tex000, i.uv), tex2D(_Tex100, i.uv), _x);   
-			fixed4 col_d10 = lerp(tex2D(_Tex010, i.uv), tex2D(_Tex110, i.uv), _x);  
-			fixed4 col_dd0 = lerp(col_d00, col_d10, _y);
+            fixed4 col_d00 = lerp(tex2D(_Tex000, i.uv), tex2D(_Tex100, i.uv), x);   
+			fixed4 col_d10 = lerp(tex2D(_Tex010, i.uv), tex2D(_Tex110, i.uv), x);  
+			fixed4 col_dd0 = lerp(col_d00, col_d10, y);
 
-			fixed4 col_d01 = lerp(tex2D(_Tex001, i.uv), tex2D(_Tex101, i.uv), _x);
-            fixed4 col_d11 = lerp(tex2D(_Tex011, i.uv), tex2D(_Tex111, i.uv), _x);
-            fixed4 col_dd1 = lerp(col_d01, col_d11, _y);
+			fixed4 col_d01 = lerp(tex2D(_Tex001, i.uv), tex2D(_Tex101, i.uv), x);
+            fixed4 col_d11 = lerp(tex2D(_Tex011, i.uv), tex2D(_Tex111, i.uv), x);
+            fixed4 col_dd1 = lerp(col_d01, col_d11, y);
 
-			fixed4 col = lerp(col_dd0, col_dd1, _z);
+			fixed4 col = lerp(col_dd0, col_dd1, z);
 			//fixed4 col = col_d00;
             return col;
             }

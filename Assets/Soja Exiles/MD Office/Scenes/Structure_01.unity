@@ -2527,15 +2527,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a027b5e0aef9b9b44956706aeb2412c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1399222683}
-  url: D:\xampp2\htdocs\img\pictures3\
-  jumpDelta: 0.05
-  xMin: -0.5
-  xMax: 0.5
-  yMin: 0.5
-  yMax: 1.5
-  zMin: 0
-  zMax: 1
+  camarita: {fileID: 1399222683}
+  url: D:\xampp2\htdocs\img\pictures2\
+  jumpDelta: 0.25
+  xMin: -3.52
+  xMax: 3.52
+  yMin: 0.52
+  yMax: 2.02
+  zMin: -2.52
+  zMax: 2.52
   imageSize: 2048
 --- !u!81 &1399222685
 AudioListener:
@@ -3540,7 +3540,7 @@ PrefabInstance:
     - target: {fileID: 8542715124674152682, guid: f0ab64bda8a309a41810ef11cc5064d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8542715124674152682, guid: f0ab64bda8a309a41810ef11cc5064d3,
         type: 3}
@@ -3550,7 +3550,7 @@ PrefabInstance:
     - target: {fileID: 8542715124674152682, guid: f0ab64bda8a309a41810ef11cc5064d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.09
+      value: -8.68
       objectReference: {fileID: 0}
     - target: {fileID: 8542715124674152682, guid: f0ab64bda8a309a41810ef11cc5064d3,
         type: 3}

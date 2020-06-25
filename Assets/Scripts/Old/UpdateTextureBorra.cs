@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class UpdateTextureBorra : MonoBehaviour
+{
+    public float jumpDelta;
+    public Transform target;
+    
+    public float XMin, YMin, ZMin;
+    public float XMax, YMax, ZMax;
+    public float tolerance;
+
+    private TextureMatrix textureMatrix;
+    private TexturedSphere sphere;
+    private ImageLoader imageLoader;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        sphere = GetComponent<TexturedSphere>();
+        imageLoader = GetComponent<ImageLoader>();
+        textureMatrix = new TextureMatrix(XMin, XMax, YMin, YMax, ZMin, ZMax, tolerance, jumpDelta);
+
+        UpdateActualPosition();
+
+        UpdateShaderTextures();
+
+        UpdateTextureMatrix();
+    }
+
+
+    void Update()
+    {
+        //UpdateShaderInterpolation();
+
+        if (IsNewPosition())
+        {
+            //transform.position = target.position;
+
+            UpdateActualPosition();
+
+            UpdateShaderTextures();
+
+            UpdateTextureMatrix();
+
+        }
+    }
+
+    void UpdateActualPosition()
+    {
+        textureMatrix.UpdateActualPosition(target.position);
+    }
+
+    bool IsNewPosition()
+    {
+        return textureMatrix.IsNewPosition(target.position);
+    }
+
+    void UpdateShaderTextures()
+    {
+        Vector3Int indexPos = textureMatrix.PosToIndex(target.position);
+        sphere.UpdateShaderTexture("_Tex000", textureMatrix.Get(indexPos.x,indexPos.y,indexPos.z));
+        sphere.UpdateShaderTexture("_Tex001", textureMatrix.Get(indexPos.x, indexPos.y, indexPos.z+1));
+        sphere.UpdateShaderTexture("_Tex010", textureMatrix.Get(indexPos.x, indexPos.y+1, indexPos.z));
+        sphere.UpdateShaderTexture("_Tex011", textureMatrix.Get(indexPos.x, indexPos.y+1, indexPos.z+1));
+        sphere.UpdateShaderTexture("_Tex100", textureMatrix.Get(indexPos.x+1, indexPos.y, indexPos.z));
+        sphere.UpdateShaderTexture("_Tex101", textureMatrix.Get(indexPos.x+1, indexPos.y, indexPos.z+1));
+        sphere.UpdateShaderTexture("_Tex110", textureMatrix.Get(indexPos.x+1, indexPos.y+1, indexPos.z));
+        sphere.UpdateShaderTexture("_Tex111", textureMatrix.Get(indexPos.x+1, indexPos.y+1, indexPos.z+1));
+    }
+
+    void UpdateTextureMatrix()
+    {
+        Vector3Int indexPos = textureMatrix.PosToIndex(target.position);
+        for (int i = indexPos.x-2; (i<= indexPos.x + 2)&&(i < textureMatrix.GetLengthX()); i++)
+            for (int j = indexPos.y - 2; (j <= indexPos.y + 2) && (j < textureMatrix.GetLengthY()); j++)
+                for (int k = indexPos.z - 2; (k <= indexPos.z + 2) && (k < textureMatrix.GetLengthZ()); k++)
+                    if ((i >= 0) && (j >= 0) && (k >= 0)) {
+                        if (!textureMatrix.HasTextureLoaded(i,j,k))
+                            imageLoader.LoadImage(i, j, k,textureMatrix);
+                    }
+        textureMatrix.CleanMatrix();
+                    
+    }
+
+    void UpdateShaderInterpolation()
+    {
+        float newX = target.position.x / jumpDelta;
+        newX = ((float)(newX - Math.Floor(newX)));
+        float newY = target.position.y / jumpDelta;
+        newY = ((float)(newY - Math.Floor(newY)));
+        float newZ = target.position.z / jumpDelta;
+        newZ = ((float)(newZ - Math.Floor(newZ)));
+
+        sphere.UpdateShaderInterpolation(newX, newY, newZ);
+    }
+
+    
+
+
+
+
+
+
+
+
+}

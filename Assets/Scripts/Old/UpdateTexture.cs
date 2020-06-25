@@ -16,12 +16,16 @@ public class UpdateTexture : MonoBehaviour
 
     private Material myMaterial;
 
+   // private Texture2D[,,] pruebita;
+
 
     // Start is called before the first frame update
     void Start()
     {
         myMaterial = GetComponent<Renderer>().material;
         texture_matrix = new Texture2D[4,4,4];
+
+        //pruebita = new Texture2D[100, 100, 100];
 
         UpdateLeftPositions();
         UpdateTextureMatrix();
@@ -34,6 +38,8 @@ public class UpdateTexture : MonoBehaviour
 
         if (IsNewPosition())
         {
+            Resources.UnloadUnusedAssets();
+            System.GC.Collect();
             if (MovedLeft())
             {
                 UpdateShaderTextures(0,1,1);
@@ -170,10 +176,10 @@ public class UpdateTexture : MonoBehaviour
             {
                 Texture2D myTexture = DownloadHandlerTexture.GetContent(www);
                 texture_matrix[i,j,k] = myTexture;
-                Resources.UnloadUnusedAssets();
+                
                 //CleanCache();
                 www.Dispose();
-                System.GC.Collect();
+                
             }
             catch (InvalidOperationException e)
             {

@@ -19,6 +19,7 @@ public static class I360Render
 		}
 
 		RenderTexture camTarget = renderCam.targetTexture;
+        
 
 		if( equirectangularConverter == null )
 		{

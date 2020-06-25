@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CreateImage : MonoBehaviour
 {
-    public GameObject camera;
+    public GameObject camarita;
     public string url= "D:\\xampp2\\htdocs\\img\\pictures\\";
     public float jumpDelta;
     public float xMin, xMax, yMin, yMax, zMin, zMax;
@@ -58,12 +58,13 @@ public class CreateImage : MonoBehaviour
 
         if (x < xMax)
         {
-            Invoke("SaveImage", 0.1f); //funciono con 0.005
+            Invoke("SaveImage", 0.01f); //funciono con 0.005
             string route = url;
             string name = route+FloatToString(x)+" "+FloatToString(y)+" "+FloatToString(z)+".jpg";
-            camera.transform.position = new Vector3(x, y, z);
+            camarita.transform.position = new Vector3(x, y, z);
             //Debug.Log("Comienza imagen");
-            File.WriteAllBytes(name, I360Render.Capture(imageSize, true, camera.GetComponent<Camera>(), true));
+            //le puse false en el último parámetro
+            File.WriteAllBytes(name, I360Render.Capture(imageSize, true, camarita.GetComponent<Camera>(), false));
             //Debug.Log("Termina imagen: " + name);
         }
         else
