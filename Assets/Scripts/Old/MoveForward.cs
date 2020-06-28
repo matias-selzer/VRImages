@@ -19,6 +19,6 @@ public class MoveForward : MonoBehaviour
 
     void Advance()
     {
-        transform.Translate(xJump, yJump, zJump);
+        transform.position+=new Vector3(xJump, yJump, zJump);
     }
 }

@@ -63,12 +63,9 @@ public class TextureMatrix
         matrix[i, j, k] = newTexture;
         //agregue esto para que la lista de visitados tenga cada posición con textura
         visitedPositions.Add(new Vector3Int(i,j,k));
+       // Debug.Log("visitados: " + visitedPositions.Count);
     }
 
-    /*public void AddVisitedPosition(Vector3Int newPosition)
-    {
-        visitedPositions.Add(newPosition);
-    }*/
 
     public Vector3Int PosToIndex(Vector3 position)
     {
@@ -109,25 +106,44 @@ public class TextureMatrix
     {
         Vector3Int newPosition = PosToIndex(position);
         actualIndexPosition = newPosition;
+        Debug.Log(position+" - "+newPosition);
     }
 
+    public Vector3Int GetActualIndexPosition()
+    {
+        return actualIndexPosition;
+    }
 
     public void CleanMatrix()
     {
+        Debug.Log("visitados antes de borrar: " + visitedPositions.Count);
         //esto es así porque voy borrando elementos de la lista mientras la recorro
         for (int i = visitedPositions.Count - 1; i >= 0; i--)
         {
-            if (Vector3Int.Distance(visitedPositions[i], actualIndexPosition) > 3)
+            if (Vector3Int.Distance(visitedPositions[i], actualIndexPosition) > 3f)
             {
+                //Debug.Log(actualIndexPosition+" : " +visitedPositions[i]);
+                //sDebug.Log("actualPos: "+actualIndexPosition);
                 RemoveFromMatrix(visitedPositions[i]);
                 RemoveVisitedPosition(i);
             }
         }
-        Resources.UnloadUnusedAssets();
-        System.GC.Collect();
-        Debug.Log("cant visitados: " + visitedPositions.Count);
+        //si esto no va acá se rompe todo no sé por qué
+        ReleaseData();
+
+        Debug.Log("visitados despues de borrar: " + visitedPositions.Count);
     }
 
+    public void ReleaseData()
+    {
+        Resources.UnloadUnusedAssets();
+        System.GC.Collect();
+    }
+
+    public bool HasActualTexture()
+    {
+        return Get(actualIndexPosition.x, actualIndexPosition.y, actualIndexPosition.z) != null;
+    }
 
 
     private void RemoveFromMatrix(Vector3Int pos)

@@ -6,35 +6,15 @@ using UnityEngine;
 public class TexturedSphere : MonoBehaviour
 {
     private Material myMaterial;
-    public Vector3 position;
-    public float minx, miny, minz, sampleDelta;
+    private Vector3 oldPos;
 
     // Start is called before the first frame update
     void Awake()
     {
         myMaterial = GetComponent<Renderer>().material;
+        oldPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Vector3Int output = new Vector3Int();
-            //output.x = Convert.ToInt32((position.x - minx) / sampleDelta);
-            //output.y = Convert.ToInt32((position.y - miny) / sampleDelta);
-            //output.z = Convert.ToInt32((position.z - minz) / sampleDelta);
-            output.x = (int)((position.x - minx) / sampleDelta);
-            output.y = (int)((position.y - miny) / sampleDelta);
-            output.z = (int)((position.z - minz) / sampleDelta);
-            Debug.Log(output);
-        }
-    }
-
-    private float Truncate(float f)
-    {
-        return Mathf.Floor(f / sampleDelta) * sampleDelta;
-    }
 
     public void UpdateShaderInterpolation(float newX,float newY,float newZ)
     {
@@ -45,6 +25,41 @@ public class TexturedSphere : MonoBehaviour
 
     public void UpdateShaderTexture(string shaderTextureName, Texture2D newTexture)
     {
-        myMaterial.SetTexture(shaderTextureName, newTexture);
+        //myMaterial.SetTexture(shaderTextureName, newTexture);
+        myMaterial.mainTexture = newTexture;
+        
+    }
+
+    public void MoveSphere(Vector3 newPos)
+    {
+        //esto para ver que onda
+        //Vector3 newPos = transform.position;
+        /*
+        if (MovedLeft())
+        {
+            newPos.x = target.position.x - jumpDelta;
+        }
+        else if (MovedRight())
+        {
+            newPos.x = target.position.x;
+        }
+        else if (MovedUp())
+        {
+            newPos.y = target.position.y;
+        }
+        else if (MovedDown())
+        {
+            newPos.y = target.position.y - jumpDelta;
+        }
+        else if (MovedForward())
+        {
+            newPos.z = target.position.z;
+        }
+        else if (MovedBackward())
+        {
+            newPos.z = target.position.z - jumpDelta;
+        }
+        */
+        transform.position = newPos;
     }
 }
