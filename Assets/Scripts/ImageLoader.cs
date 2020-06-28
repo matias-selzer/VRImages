@@ -62,7 +62,7 @@ public class ImageLoader : MonoBehaviour
         string newUrl = url + imageName;
 
         //versión web
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://192.168.0.5:1234/img/pictures4/" + imageName, false);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://192.168.0.5:1234/img/pictures5/" + imageName, false);
 
         //UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://" + newUrl, false);
         yield return www.SendWebRequest();

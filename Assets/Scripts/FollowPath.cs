@@ -12,6 +12,7 @@ public class FollowPath : MonoBehaviour
     void Start()
     {
         index = 0;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     // Update is called once per frame

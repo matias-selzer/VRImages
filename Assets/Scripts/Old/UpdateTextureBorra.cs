@@ -111,7 +111,7 @@ public class UpdateTextureBorra : MonoBehaviour
 
         for (int i = indexPos.x - 1; (i <= indexPos.x + 1) && (i < textureMatrix.GetLengthX()); i++)
             //for (int j = indexPos.y - 1; (j <= indexPos.y + 1) && (j < textureMatrix.GetLengthY()); j++)
-                for (int k = indexPos.z - 2; (k <= indexPos.z + 2) && (k < textureMatrix.GetLengthZ()); k++)
+                for (int k = indexPos.z - 1; (k <= indexPos.z + 1) && (k < textureMatrix.GetLengthZ()); k++)
                     if ((i >= 0) && (indexPos.y >= 0) && (k >= 0))
                     {
                         if (!textureMatrix.HasTextureLoaded(i, indexPos.y, k))
