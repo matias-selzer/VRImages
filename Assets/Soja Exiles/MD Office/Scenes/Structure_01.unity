@@ -2830,7 +2830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camarita: {fileID: 1399222683}
-  url: D:\xampp2\htdocs\img\pictures5\
+  url: D:\xampp2\htdocs\img\pictures6\
   jumpDelta: 0.2
   xMin: -17
   xMax: 10
@@ -2838,7 +2838,7 @@ MonoBehaviour:
   yMax: 1.6
   zMin: -10
   zMax: 10
-  imageSize: 2048
+  imageSize: 512
 --- !u!81 &1399222685
 AudioListener:
   m_ObjectHideFlags: 0

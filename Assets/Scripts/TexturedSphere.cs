@@ -15,14 +15,6 @@ public class TexturedSphere : MonoBehaviour
         oldPos = transform.position;
     }
 
-
-    public void UpdateShaderInterpolation(float newX,float newY,float newZ)
-    {
-        myMaterial.SetFloat("_x", newX);
-        myMaterial.SetFloat("_y", newY);
-        myMaterial.SetFloat("_z", newZ);
-    }
-
     public void UpdateShaderTexture(string shaderTextureName, Texture2D newTexture)
     {
         //myMaterial.SetTexture(shaderTextureName, newTexture);
@@ -32,34 +24,15 @@ public class TexturedSphere : MonoBehaviour
 
     public void MoveSphere(Vector3 newPos)
     {
-        //esto para ver que onda
-        //Vector3 newPos = transform.position;
-        /*
-        if (MovedLeft())
-        {
-            newPos.x = target.position.x - jumpDelta;
-        }
-        else if (MovedRight())
-        {
-            newPos.x = target.position.x;
-        }
-        else if (MovedUp())
-        {
-            newPos.y = target.position.y;
-        }
-        else if (MovedDown())
-        {
-            newPos.y = target.position.y - jumpDelta;
-        }
-        else if (MovedForward())
-        {
-            newPos.z = target.position.z;
-        }
-        else if (MovedBackward())
-        {
-            newPos.z = target.position.z - jumpDelta;
-        }
-        */
         transform.position = newPos;
     }
+
+    //acá hay que hacer algo más genérico
+    public void UpdateShaderInterpolation(float newX, float newY, float newZ)
+    {
+        myMaterial.SetFloat("_x", newX);
+        myMaterial.SetFloat("_y", newY);
+        myMaterial.SetFloat("_z", newZ);
+    }
+
 }

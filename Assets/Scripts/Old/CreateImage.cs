@@ -58,7 +58,7 @@ public class CreateImage : MonoBehaviour
 
         if (x < xMax)
         {
-            Invoke("SaveImage", 0.1f); //funciono con 0.005
+            Invoke("SaveImage", 0.01f); //funciono con 0.005
             string route = url;
             string name = route+FloatToString(x)+" "+FloatToString(y)+" "+FloatToString(z)+".jpg";
             camarita.transform.position = new Vector3(x, y, z);

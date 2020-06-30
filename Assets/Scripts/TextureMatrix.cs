@@ -9,9 +9,10 @@ public class TextureMatrix
     private List<Vector3Int> visitedPositions;
     private float sampleDelta;
     private float minx, miny, minz;
+    private int toleranceDistance;
     private Vector3Int actualIndexPosition;
 
-    public TextureMatrix(float minx,float maxx,float miny,float maxy,float minz,float maxz,float distance,float sampleDelta)
+    public TextureMatrix(float minx,float maxx,float miny,float maxy,float minz,float maxz,int distance,float sampleDelta)
     {
         int cantx = Convert.ToInt32((maxx - minx) / sampleDelta);
         int canty = Convert.ToInt32((maxy - miny) / sampleDelta);
@@ -21,7 +22,7 @@ public class TextureMatrix
         this.minz = minz;
         matrix = new Texture2D[cantx, canty, cantz];
         visitedPositions = new List<Vector3Int>();
-        //this.toleranceDistance = distance;
+        this.toleranceDistance = distance;
         this.sampleDelta = sampleDelta;
     }
 
@@ -43,29 +44,11 @@ public class TextureMatrix
         }
     }
 
-    public int GetLengthX()
-    {
-        return matrix.GetLength(0);
-    }
-
-    public int GetLengthY()
-    {
-        return matrix.GetLength(1);
-    }
-
-    public int GetLengthZ()
-    {
-        return matrix.GetLength(2);
-    }
-
     public void Set(int i,int j,int k, Texture2D newTexture)
     {
         matrix[i, j, k] = newTexture;
-        //agregue esto para que la lista de visitados tenga cada posición con textura
         visitedPositions.Add(new Vector3Int(i,j,k));
-       // Debug.Log("visitados: " + visitedPositions.Count);
     }
-
 
     public Vector3Int PosToIndex(Vector3 position)
     {
@@ -87,7 +70,6 @@ public class TextureMatrix
         float x = Truncate((i * sampleDelta) + minx);
         float y = Truncate((j * sampleDelta) + miny);
         float z = Truncate((k * sampleDelta) + minz);
-        //ver que onda con los decimales (pareciera que anda bien)
         return new Vector3(x, y, z);
     }
 
@@ -106,32 +88,22 @@ public class TextureMatrix
     {
         Vector3Int newPosition = PosToIndex(position);
         actualIndexPosition = newPosition;
-        Debug.Log(position+" - "+newPosition);
-    }
-
-    public Vector3Int GetActualIndexPosition()
-    {
-        return actualIndexPosition;
+        Debug.Log("*********************  Estoy en: " + newPosition);
     }
 
     public void CleanMatrix()
     {
-        Debug.Log("visitados antes de borrar: " + visitedPositions.Count);
         //esto es así porque voy borrando elementos de la lista mientras la recorro
         for (int i = visitedPositions.Count - 1; i >= 0; i--)
         {
-            if (Vector3Int.Distance(visitedPositions[i], actualIndexPosition) > 3f)
+            if (Vector3Int.Distance(visitedPositions[i], actualIndexPosition) > toleranceDistance)
             {
-                //Debug.Log(actualIndexPosition+" : " +visitedPositions[i]);
-                //sDebug.Log("actualPos: "+actualIndexPosition);
                 RemoveFromMatrix(visitedPositions[i]);
                 RemoveVisitedPosition(i);
             }
         }
         //si esto no va acá se rompe todo no sé por qué
         ReleaseData();
-
-        Debug.Log("visitados despues de borrar: " + visitedPositions.Count);
     }
 
     public void ReleaseData()
@@ -145,7 +117,6 @@ public class TextureMatrix
         return Get(actualIndexPosition.x, actualIndexPosition.y, actualIndexPosition.z) != null;
     }
 
-
     private void RemoveFromMatrix(Vector3Int pos)
     {
         matrix[pos.x, pos.y, pos.z] = null;
@@ -154,5 +125,25 @@ public class TextureMatrix
     private void RemoveVisitedPosition(int index)
     {
         visitedPositions.RemoveAt(index);
+    }
+
+    public Vector3Int GetActualIndexPosition()
+    {
+        return actualIndexPosition;
+    }
+
+    public int GetLengthX()
+    {
+        return matrix.GetLength(0);
+    }
+
+    public int GetLengthY()
+    {
+        return matrix.GetLength(1);
+    }
+
+    public int GetLengthZ()
+    {
+        return matrix.GetLength(2);
     }
 }

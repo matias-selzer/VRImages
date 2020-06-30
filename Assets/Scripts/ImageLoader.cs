@@ -92,6 +92,7 @@ public class ImageLoader : MonoBehaviour
         {
             try
             {
+                Debug.Log("ya traje imagen: " + i + ", " + j + ", " + k);
                 concurrentCoroutinesNumber--;
                 Texture2D myTexture = DownloadHandlerTexture.GetContent(www);
                 textureMatrix.Set(i, j, k, myTexture);
