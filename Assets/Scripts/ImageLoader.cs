@@ -6,7 +6,9 @@ using UnityEngine.Networking;
 
 public class ImageLoader : MonoBehaviour
 {
-    public string url = "http://localhost:1234/img/pictures4/";
+    public string localURL = "D:/xampp2/htdocs/img/pictures2/";
+    public string webURL = "http://192.168.0.5:1234/img/pictures5/";
+    public bool useWebURL;
     private List<Vector3Int> toLoadImages;
     private TextureMatrix textureMatrix;
 
@@ -59,12 +61,20 @@ public class ImageLoader : MonoBehaviour
         string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
         imageName = imageName.Replace('.', ',');
         imageName=imageName+ ".jpg";
-        string newUrl = url + imageName;
 
-        //versión web
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://192.168.0.5:1234/img/pictures5/" + imageName, false);
+        string urlToUse = "";
 
-        //UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://" + newUrl, false);
+        if (useWebURL)
+        {
+            urlToUse = webURL + imageName;
+        }
+        else
+        {
+            urlToUse = "file://" + localURL + imageName;
+        }
+
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(webURL + imageName, false);
+
         yield return www.SendWebRequest();
 
         while (!www.isDone)
@@ -76,7 +86,7 @@ public class ImageLoader : MonoBehaviour
         if (www.isNetworkError)
         {
             Debug.Log("Error:" + www.error);
-            Debug.Log(newUrl + " ERROR");
+            Debug.Log(urlToUse + " ERROR");
         }
         else
         {
@@ -90,7 +100,7 @@ public class ImageLoader : MonoBehaviour
             }
             catch (InvalidOperationException e)
             {
-                Debug.Log("image not found - " + newUrl + " ERROR");
+                Debug.Log("image not found - " + urlToUse + " ERROR");
             }
 
         }
