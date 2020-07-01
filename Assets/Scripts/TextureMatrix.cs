@@ -73,7 +73,7 @@ public class TextureMatrix
         return new Vector3(x, y, z);
     }
 
-    private float Truncate(float f)
+    public float Truncate(float f)
     {
         return Mathf.Floor(f / sampleDelta) * sampleDelta;
     }
@@ -88,6 +88,7 @@ public class TextureMatrix
     {
         Vector3Int newPosition = PosToIndex(position);
         actualIndexPosition = newPosition;
+        Debug.Log(position);
         Debug.Log("*********************  Estoy en: " + newPosition);
     }
 

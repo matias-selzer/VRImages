@@ -57,7 +57,7 @@ public class ImageLoader : MonoBehaviour
         concurrentCoroutinesNumber++;
 
         Vector3 truncatedPos = textureMatrix.IndexToTruncatedPos(i, j, k);
-
+        
         string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
         imageName = imageName.Replace('.', ',');
         imageName=imageName+ ".jpg";
@@ -72,6 +72,8 @@ public class ImageLoader : MonoBehaviour
         {
             urlToUse = "file://" + localURL + imageName;
         }
+
+        //Debug.Log("URL: " + urlToUse);
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(webURL + imageName, false);
 
@@ -92,7 +94,7 @@ public class ImageLoader : MonoBehaviour
         {
             try
             {
-                Debug.Log("ya traje imagen: " + i + ", " + j + ", " + k);
+                //Debug.Log("ya traje imagen: " + i + ", " + j + ", " + k);
                 concurrentCoroutinesNumber--;
                 Texture2D myTexture = DownloadHandlerTexture.GetContent(www);
                 textureMatrix.Set(i, j, k, myTexture);

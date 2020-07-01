@@ -78,7 +78,7 @@ public class TexturesManager : MonoBehaviour
                 for (int k = indexPos.z - kernelRadioZ; (k <= indexPos.z + kernelRadioZ) && (k < textureMatrix.GetLengthZ()); k++)
                     if ((i >= 0) && (indexPos.y >= 0) && (k >= 0))
                     {
-                        if (!textureMatrix.HasTextureLoaded(i, indexPos.y, k))
+                    if (!textureMatrix.HasTextureLoaded(i, indexPos.y, k))
                             imageLoader.LoadImage(i, indexPos.y, k, textureMatrix);
                     }
         
