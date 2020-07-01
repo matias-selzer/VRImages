@@ -89,8 +89,8 @@ public class TextureMatrix
     {
         Vector3Int newPosition = PosToIndex(position);
         actualIndexPosition = newPosition;
-        Debug.Log(position);
-        Debug.Log("*********************  Estoy en: " + newPosition);
+        //Debug.Log(position);
+        //Debug.Log("*********************  Estoy en: " + newPosition);
     }
 
     public void CleanMatrix()

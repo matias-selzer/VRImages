@@ -58,7 +58,8 @@ public class ImageLoader : MonoBehaviour
 
         Vector3 truncatedPos = textureMatrix.IndexToTruncatedPos(i, j, k);
         
-        string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
+        //string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
+        string imageName = truncatedPos.x + "%20" + "1.68" + "%20" + truncatedPos.z;
         imageName = imageName.Replace('.', ',');
         imageName=imageName+ ".jpg";
 
