@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyboardMove : MonoBehaviour
 {
+    public float moveSpeed, rotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,15 @@ public class KeyboardMove : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * 0.1f * Time.deltaTime;
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0, -1.0f * rotateSpeed * Time.deltaTime,0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(0, 1.0f * rotateSpeed * Time.deltaTime, 0);
         }
     }
 }

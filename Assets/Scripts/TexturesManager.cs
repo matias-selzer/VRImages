@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 public class TexturesManager : MonoBehaviour
 {
-    public Transform target;
+    public Transform cameraCenter,cameraL,cameraR;
     
     public float XMin, XMax, YMin, YMax, ZMin, ZMax;
     public float jumpDelta;
@@ -15,7 +15,7 @@ public class TexturesManager : MonoBehaviour
     public int kernelRadioX, kernelRadioY, kernelRadioZ;
 
     private TextureMatrix textureMatrix;
-    public TexturedSphere sphere;
+    public TexturedSphere sphereL,sphereR;
     private ImageLoader imageLoader;
 
 
@@ -47,23 +47,27 @@ public class TexturesManager : MonoBehaviour
 
     void UpdateSpherePosition()
     {
-        sphere.MoveSphere(target.position);
+        sphereL.MoveSphere(cameraL.position);
+        sphereR.MoveSphere(cameraR.position);
     }
 
     void UpdateActualPosition()
     {
-        textureMatrix.UpdateActualPosition(target.position);
+        textureMatrix.UpdateActualPosition(cameraCenter.position);
     }
 
     bool IsNewPosition()
     {
-        return textureMatrix.IsNewPosition(target.position);
+        return textureMatrix.IsNewPosition(cameraCenter.position);
     }
 
     void UpdateShaderTextures()
     {
-        Vector3Int indexPos = textureMatrix.PosToIndex(target.position);
-        sphere.UpdateShaderTexture("_Tex000", textureMatrix.Get(indexPos.x,indexPos.y,indexPos.z));
+        Vector3Int indexPosL = textureMatrix.PosToIndex(cameraL.position);
+        sphereL.UpdateShaderTexture("_Tex000", textureMatrix.Get(indexPosL.x,indexPosL.y,indexPosL.z));
+
+        Vector3Int indexPosR = textureMatrix.PosToIndex(cameraR.position);
+        sphereR.UpdateShaderTexture("_Tex000", textureMatrix.Get(indexPosR.x, indexPosR.y, indexPosR.z));
     }
 
     void UpdateTextureMatrix()

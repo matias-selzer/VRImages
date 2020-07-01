@@ -11,6 +11,7 @@ public class TextureMatrix
     private float minx, miny, minz;
     private int toleranceDistance;
     private Vector3Int actualIndexPosition;
+    private int timeToClean=0;
 
     public TextureMatrix(float minx,float maxx,float miny,float maxy,float minz,float maxz,int distance,float sampleDelta)
     {
@@ -94,17 +95,20 @@ public class TextureMatrix
 
     public void CleanMatrix()
     {
-        //esto es así porque voy borrando elementos de la lista mientras la recorro
-        for (int i = visitedPositions.Count - 1; i >= 0; i--)
-        {
-            if (Vector3Int.Distance(visitedPositions[i], actualIndexPosition) > toleranceDistance)
+        timeToClean=(timeToClean+1)%5;
+        if (timeToClean == 0) {
+            //esto es así porque voy borrando elementos de la lista mientras la recorro
+            for (int i = visitedPositions.Count - 1; i >= 0; i--)
             {
-                RemoveFromMatrix(visitedPositions[i]);
-                RemoveVisitedPosition(i);
+                if (Vector3Int.Distance(visitedPositions[i], actualIndexPosition) > toleranceDistance)
+                {
+                    RemoveFromMatrix(visitedPositions[i]);
+                    RemoveVisitedPosition(i);
+                }
             }
+            //si esto no va acá se rompe todo no sé por qué
+            ReleaseData();
         }
-        //si esto no va acá se rompe todo no sé por qué
-        ReleaseData();
     }
 
     public void ReleaseData()
