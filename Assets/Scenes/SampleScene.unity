@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &259302175
 Transform:
   m_ObjectHideFlags: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
   YMax: 1.78
   ZMin: -10
   ZMax: 10
-  jumpDelta: 0.08
+  jumpDelta: 0.04
   toleranceDistanceCells: 3
   kernelRadioX: 1
   kernelRadioY: 1
@@ -1548,7 +1548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1762115541
 Transform:
   m_ObjectHideFlags: 0
@@ -1576,7 +1576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b34ceeab632f04bb589a5d45981b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 0.5
   rotateSpeed: 50
   target: {fileID: 1872726912}
 --- !u!1 &1768408667
@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872726911}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5472d959fc3acd48bdd50bf79c046ea, type: 3}
   m_Name: 
@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de72d0c24706124aad20f1eeca0bbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.3
+  moveSpeed: 0.1
   rotateSpeed: 50
 --- !u!1001 &2056495293
 PrefabInstance:
