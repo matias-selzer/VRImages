@@ -13,7 +13,7 @@ public class FollowPath : MonoBehaviour
     {
         index = 0;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        InvokeRepeating("Move", 0, moveTime);
+        
     }
 
     private void Move()
@@ -21,7 +21,7 @@ public class FollowPath : MonoBehaviour
         Vector3 normalizedDirection = Vector3.Normalize(positions[index].position - transform.position);
         transform.position = transform.position + normalizedDirection * moveDistance;
 
-        if (Vector3.Distance(transform.position, positions[index].position) < 0.1f)
+        if (Vector3.Distance(transform.position, positions[index].position) <= moveDistance)
         {
             index = (index + 1) % positions.Length;
         }
@@ -31,8 +31,11 @@ public class FollowPath : MonoBehaviour
     void Update()
     {
         //transform.position = Vector3.MoveTowards(transform.position, positions[index].position, moveSpeed * Time.deltaTime);
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            InvokeRepeating("Move", 0, moveTime);
+        }
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, positions[index].rotation, rotateSpeed * Time.deltaTime);
     }
