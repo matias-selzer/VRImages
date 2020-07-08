@@ -17,12 +17,14 @@ public class TexturesManager : MonoBehaviour
     private TextureMatrix textureMatrix;
     public TexturedSphere sphereL,sphereR;
     private ImageLoader imageLoader;
+    private RoomsInformationManager rooms;
 
 
     void Start()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         imageLoader = GetComponent<ImageLoader>();
+        rooms = GetComponent<RoomsInformationManager>();
         textureMatrix = new TextureMatrix(XMin, XMax, YMin, YMax, ZMin, ZMax, toleranceDistanceCells, jumpDelta);
 
         UpdateActualPosition();
@@ -32,8 +34,12 @@ public class TexturesManager : MonoBehaviour
 
     void Update()
     {
+        UpdateShaderValues();
+
         if (IsNewPosition())
         {
+            UpdateRoomInformation();
+
             UpdateSpherePosition();
 
             UpdateActualPosition();
@@ -42,6 +48,11 @@ public class TexturesManager : MonoBehaviour
 
             UpdateTextureMatrix();
         }
+    }
+
+    void UpdateRoomInformation()
+    {
+        rooms.UpdateCurrentRoom(cameraCenter.position);
     }
 
 
@@ -61,13 +72,36 @@ public class TexturesManager : MonoBehaviour
         return textureMatrix.IsNewPosition(cameraCenter.position);
     }
 
+
     void UpdateShaderTextures()
     {
         Vector3Int indexPosL = textureMatrix.PosToIndex(cameraL.position);
-        sphereL.UpdateShaderTexture("_Tex000", textureMatrix.Get(indexPosL.x,indexPosL.y,indexPosL.z));
+        sphereL.UpdateShaderTexture("_Tex", textureMatrix.Get(indexPosL.x,indexPosL.y,indexPosL.z));
 
         Vector3Int indexPosR = textureMatrix.PosToIndex(cameraR.position);
-        sphereR.UpdateShaderTexture("_Tex000", textureMatrix.Get(indexPosR.x, indexPosR.y, indexPosR.z));
+        sphereR.UpdateShaderTexture("_Tex", textureMatrix.Get(indexPosR.x, indexPosR.y, indexPosR.z));
+    }
+
+    void UpdateShaderValues()
+    {
+        Vector3 roomCenter = rooms.GetCenter();
+        float roomRadius = rooms.GetRadius();
+
+        Debug.Log("Center: " + roomCenter);
+        Debug.Log("Radius: " + roomRadius);
+
+        Vector3 truncatedL = new Vector3(textureMatrix.Truncate(cameraL.position.x), textureMatrix.Truncate(cameraL.position.y), textureMatrix.Truncate(cameraL.position.z));
+        Vector3 truncatedR = new Vector3(textureMatrix.Truncate(cameraR.position.x), textureMatrix.Truncate(cameraR.position.y), textureMatrix.Truncate(cameraR.position.z));
+
+        sphereL.UpdateShaderVariable("_radio", roomRadius);
+        sphereL.UpdateShaderVariable("_centro", roomCenter);
+        sphereL.UpdateShaderVariable("_pos", cameraL.position);
+        sphereL.UpdateShaderVariable("_posImg", truncatedL);
+
+        sphereR.UpdateShaderVariable("_radio", roomRadius);
+        sphereR.UpdateShaderVariable("_centro", roomCenter);
+        sphereR.UpdateShaderVariable("_pos", cameraR.position);
+        sphereR.UpdateShaderVariable("_posImg", truncatedR);
     }
 
     void UpdateTextureMatrix()

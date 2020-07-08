@@ -7,7 +7,10 @@ using UnityEngine.Networking;
 public class RoomsInformationManager : MonoBehaviour
 {
     public string fileURL;
+    public float radiusOffset;
     private List<RoomInfo> rooms;
+    private RoomInfo currentRoom;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,5 +93,44 @@ public class RoomsInformationManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void UpdateCurrentRoom(Vector3 currentPosition)
+    {
+        bool encontre = false;
+        for(int i=0;i<rooms.Count && !encontre; i++)
+        {
+            encontre = rooms[i].IsInside(currentPosition);
+            if (encontre)
+            {
+                currentRoom = rooms[i];
+            }
+        }
+    }
+
+    public float GetRadius()
+    {
+        if (currentRoom != null)
+        {
+            return currentRoom.GetRadius()*2;
+        }
+        else
+        {
+            return 100;
+        }
+        
+    }
+
+    public Vector3 GetCenter()
+    {
+        if (currentRoom != null)
+        {
+            return currentRoom.GetCenter();
+        }
+        else
+        {
+            return new Vector3(0, 0, 0);
+        }
+        
     }
 }

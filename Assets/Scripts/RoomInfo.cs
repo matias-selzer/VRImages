@@ -17,7 +17,7 @@ public class RoomInfo
         this.zmin = zmin;
         this.zmax = zmax;
 
-        center = new Vector3(xmax - xmin, ymax - ymin, zmax - zmin);
+        center = new Vector3((xmax + xmin)/2.0f, (ymax + ymin) / 2.0f, (zmax + zmin) / 2.0f);
 
         radius = Vector3.Distance(center, new Vector3(xmax, ymax, zmax));
     }
