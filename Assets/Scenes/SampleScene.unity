@@ -636,7 +636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &729546366
 MonoBehaviour:
@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileURL: http://192.168.0.5:1234/img/rooms.txt
-  radiusOffset: 5
+  radiusOffset: 0
 --- !u!1 &759961321
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -1394,7 +1394,7 @@ RectTransform:
   m_Children:
   - {fileID: 411184302}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1447,7 +1447,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -1477,7 +1477,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -1497,17 +1497,17 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: -16
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 16
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543815, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -1700,7 +1700,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de72d0c24706124aad20f1eeca0bbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 0.3
   rotateSpeed: 50
 --- !u!1001 &2028113437
 PrefabInstance:
@@ -1945,7 +1945,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}

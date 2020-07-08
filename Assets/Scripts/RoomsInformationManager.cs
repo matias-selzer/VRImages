@@ -112,7 +112,7 @@ public class RoomsInformationManager : MonoBehaviour
     {
         if (currentRoom != null)
         {
-            return currentRoom.GetRadius()*2;
+            return currentRoom.GetRadius()+radiusOffset;
         }
         else
         {

@@ -36,6 +36,7 @@ public class TexturesManager : MonoBehaviour
     {
         UpdateShaderValues();
 
+
         if (IsNewPosition())
         {
             UpdateRoomInformation();
@@ -58,8 +59,12 @@ public class TexturesManager : MonoBehaviour
 
     void UpdateSpherePosition()
     {
-        sphereL.MoveSphere(cameraL.position);
-        sphereR.MoveSphere(cameraR.position);
+        //sphereL.MoveSphere(cameraL.position);
+        //sphereR.MoveSphere(cameraR.position);
+        //sphereL.MoveSphere(rooms.GetCenter());
+        //sphereL.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius()*20;
+        sphereL.MoveSphere(cameraCenter.position);
+
     }
 
     void UpdateActualPosition()

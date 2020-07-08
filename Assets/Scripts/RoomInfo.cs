@@ -19,7 +19,7 @@ public class RoomInfo
 
         center = new Vector3((xmax + xmin)/2.0f, (ymax + ymin) / 2.0f, (zmax + zmin) / 2.0f);
 
-        radius = Vector3.Distance(center, new Vector3(xmax, ymax, zmax));
+        radius = Vector3.Distance(center, new Vector3(xmax, center.y, zmax));
     }
 
     public bool IsInside(Vector3 pos)

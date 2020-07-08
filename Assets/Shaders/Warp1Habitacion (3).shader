@@ -105,8 +105,11 @@
 			}
 
 			float4 version6(float2 uv, float3 p_t, float3 p_0, sampler2D Texture) {
+				float k = ((length(p_t) - 0.0) / _radio)*(1.0 - 0.5)+0.5;
+				
 				//float RadioHabitacion = _radio;
 				float R = _radio;
+
 				float3 q = {0,0,0}; //origen de todo
 
 				//Punto en la habitación
