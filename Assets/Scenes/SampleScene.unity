@@ -1838,7 +1838,7 @@ MonoBehaviour:
   - {fileID: 713330105}
   - {fileID: 864928533}
   moveTime: 0.025
-  moveDistance: 0.01
+  moveDistance: 0.005
   rotateSpeed: 50
 --- !u!114 &1872726915
 MonoBehaviour:
