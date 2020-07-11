@@ -36,7 +36,7 @@ public class TexturesManager : MonoBehaviour
 
     void Update()
     {
-        //UpdateShaderValues();
+        UpdateShaderValues();
 
 
         if (IsNewPosition())
@@ -61,11 +61,12 @@ public class TexturesManager : MonoBehaviour
 
     void UpdateSpherePosition()
     {
-        //sphereL.MoveSphere(cameraL.position);
-        //sphereR.MoveSphere(cameraR.position);
+        sphereL.MoveSphere(cameraL.position);
+        sphereR.MoveSphere(cameraR.position);
         //sphereL.MoveSphere(rooms.GetCenter());
         sphereL.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius()*10;
-        sphereL.MoveSphere(cameraCenter.position);
+        sphereR.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius() * 10;
+        //sphereL.MoveSphere(cameraCenter.position);
 
     }
 
@@ -102,8 +103,8 @@ public class TexturesManager : MonoBehaviour
         Vector3 truncatedL = new Vector3(textureMatrix.Truncate(cameraL.position.x), textureMatrix.Truncate(cameraL.position.y), textureMatrix.Truncate(cameraL.position.z));
         Vector3 truncatedR = new Vector3(textureMatrix.Truncate(cameraR.position.x), textureMatrix.Truncate(cameraR.position.y), textureMatrix.Truncate(cameraR.position.z));
 
-        Debug.Log("x:"+cameraL.position.x+" - "+truncatedL.x);
-        Debug.Log("z:" + cameraL.position.z + " - " + truncatedL.z);
+        //Debug.Log("x:"+cameraL.position.x+" - "+truncatedL.x);
+        //Debug.Log("z:" + cameraL.position.z + " - " + truncatedL.z);
 
         sphereL.UpdateShaderVariable("_radio", roomRadius);
         sphereL.UpdateShaderVariable("_centro", roomCenter);

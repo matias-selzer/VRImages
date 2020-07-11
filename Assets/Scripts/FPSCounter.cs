@@ -10,6 +10,7 @@ public class FPSCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<SendToGoogle>().Send("Hola pepe");
         InvokeRepeating("ShowFPS", 0, timeInterval);
     }
 
