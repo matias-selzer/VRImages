@@ -7,6 +7,7 @@ public class FollowPath : MonoBehaviour
     public Transform[] positions;
     private int index;
     public float moveTime,moveDistance, rotateSpeed;
+    public FPSCounter fpsCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,13 @@ public class FollowPath : MonoBehaviour
 
         if (Vector3.Distance(transform.position, positions[index].position) <= moveDistance)
         {
-            index = (index + 1) % positions.Length;
+            index++;
+            if (index == positions.Length)
+            {
+                fpsCounter.SendFPSData();
+                CancelInvoke();
+            }
+            //index = (index + 1) % positions.Length;
         }
     }
 
@@ -35,8 +42,10 @@ public class FollowPath : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             InvokeRepeating("Move", 0, moveTime);
+            fpsCounter.Initialize();
         }
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, positions[index].rotation, rotateSpeed * Time.deltaTime);
+        if(index<positions.Length)
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, positions[index].rotation, rotateSpeed * Time.deltaTime);
     }
 }
