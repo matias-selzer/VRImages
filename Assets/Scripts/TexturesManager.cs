@@ -18,7 +18,7 @@ public class TexturesManager : MonoBehaviour
     public TexturedSphere sphereL,sphereR;
     private ImageLoader imageLoader;
     private RoomsInformationManager rooms;
-
+    bool ok;
 
     void Start()
     {
@@ -31,25 +31,30 @@ public class TexturesManager : MonoBehaviour
         UpdateTextureMatrix();
 
         InvokeRepeating("UpdateShaderValues", 0, 0.1f);
+
+        ok = true;
     }
 
 
     void Update()
     {
-        UpdateShaderValues();
-
-
-        if (IsNewPosition())
+        if (ok)
         {
-            UpdateRoomInformation();
+            UpdateShaderValues();
 
-            UpdateSpherePosition();
 
-            UpdateActualPosition();
+            if (IsNewPosition())
+            {
+                UpdateRoomInformation();
 
-            UpdateShaderTextures();
+                UpdateSpherePosition();
 
-            UpdateTextureMatrix();
+                UpdateActualPosition();
+
+                UpdateShaderTextures();
+
+                UpdateTextureMatrix();
+            }
         }
     }
 

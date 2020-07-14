@@ -15,12 +15,14 @@ public class TextureMatrix
 
     public TextureMatrix(float minx,float maxx,float miny,float maxy,float minz,float maxz,int distance,float sampleDelta)
     {
-        int cantx = Convert.ToInt32((maxx - minx) / sampleDelta);
-        int canty = Convert.ToInt32((maxy - miny) / sampleDelta);
-        int cantz = Convert.ToInt32((maxz - minz) / sampleDelta);
+        int cantx = (int) Math.Ceiling((maxx - minx) / sampleDelta);
+        int canty = (int)Math.Ceiling((maxy - miny) / sampleDelta);
+        Debug.Log((maxy - miny) / sampleDelta);
+        int cantz = (int)Math.Ceiling((maxz - minz) / sampleDelta);
         this.minx = minx;
         this.miny = miny;
         this.minz = minz;
+        Debug.Log(cantx + " " + canty + " " + cantz);
         matrix = new Texture2D[cantx, canty, cantz];
         visitedPositions = new List<Vector3Int>();
         this.toleranceDistance = distance;
@@ -29,6 +31,7 @@ public class TextureMatrix
 
     public bool HasTextureLoaded(int i, int j, int k)
     {
+        Debug.Log(i + " " + j + " " + k);
         return matrix[i, j, k] != null;
     }
 
