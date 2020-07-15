@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &21261570
 Transform:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &259302175
 Transform:
   m_ObjectHideFlags: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   YMax: 1.78
   ZMin: -10
   ZMax: 10
-  jumpDelta: 0.08
+  jumpDelta: 0.4
   toleranceDistanceCells: 3
   kernelRadioX: 1
   kernelRadioY: 1
@@ -1801,7 +1801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1762115541
 Transform:
   m_ObjectHideFlags: 0
@@ -1941,10 +1941,11 @@ MonoBehaviour:
   - {fileID: 446267683}
   - {fileID: 713330105}
   - {fileID: 864928533}
-  moveTime: 0.025
-  moveDistance: 0.002
+  moveTime: 0.5
+  moveDistance: 0.1
   rotateSpeed: 50
   fpsCounter: {fileID: 1712816325}
+  tm: {fileID: 729546364}
 --- !u!114 &1872726915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1984,7 +1985,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 194162, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 194162, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_Name
@@ -2072,7 +2073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22483970, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.000000059604645
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 11493216, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_Color.a

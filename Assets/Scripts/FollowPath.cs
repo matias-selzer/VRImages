@@ -8,6 +8,7 @@ public class FollowPath : MonoBehaviour
     private int index;
     public float moveTime,moveDistance, rotateSpeed;
     public FPSCounter fpsCounter;
+    public TexturesManager tm;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,8 @@ public class FollowPath : MonoBehaviour
             }
             //index = (index + 1) % positions.Length;
         }
+
+        tm.UpdateShaderValues();
     }
 
     // Update is called once per frame

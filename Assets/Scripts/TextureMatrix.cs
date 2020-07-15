@@ -108,7 +108,7 @@ public class TextureMatrix
                 }
             }
             //si esto no va acá se rompe todo no sé por qué
-            //ReleaseData();
+            ReleaseData();
         }
     }
 

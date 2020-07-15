@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Soja Exiles/MD Office/Scenes/Structure_01.unity
     guid: 0c99ea74f8af1b049b03987bcd45a41c
+  - enabled: 0
+    path: Assets/Scenes/TestSimple.unity
+    guid: 5223953d7467906488d19a87d7464335
   m_configObjects: {}
