@@ -38,20 +38,20 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &21261570
 Transform:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414301677}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &414301679
 Camera:
   m_ObjectHideFlags: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   YMax: 1.78
   ZMin: -10
   ZMax: 10
-  jumpDelta: 0.4
+  jumpDelta: 0.08
   toleranceDistanceCells: 3
   kernelRadioX: 1
   kernelRadioY: 1
@@ -1110,7 +1110,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058369545}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1058369548
 Camera:
   m_ObjectHideFlags: 0
@@ -1984,7 +1984,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 194162, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 194162, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_Name
@@ -2000,19 +2000,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2024,11 +2024,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466902, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_SizeDelta.x

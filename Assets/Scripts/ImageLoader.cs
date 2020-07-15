@@ -30,7 +30,9 @@ public class ImageLoader : MonoBehaviour
 
     public void EmptyImageList()
     {
+        //Debug.Log("cantidad antes: " + toLoadImages.Count);
         toLoadImages.Clear();
+        //Debug.Log("cantidad despues: " + toLoadImages.Count);
     }
 
     public void LoadImage(int i, int j, int k, TextureMatrix textureMatrix)
@@ -44,10 +46,15 @@ public class ImageLoader : MonoBehaviour
 
     void ExecuteLoadImage()
     {
+        int aux = toLoadImages.Count;
         if (toLoadImages.Count > 0)
         {
             Vector3Int imageToLoad = toLoadImages[0];
             toLoadImages.RemoveAt(0);
+            /*if (toLoadImages.Count != aux - 1)
+            {
+                Debug.Log("error");
+            }*/
             StartCoroutine(LoadLocalTextureWebRequestInMatrix(imageToLoad.x, imageToLoad.y, imageToLoad.z, textureMatrix));
         }
     }
