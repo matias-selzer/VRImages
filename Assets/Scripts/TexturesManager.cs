@@ -37,7 +37,7 @@ public class TexturesManager : MonoBehaviour
 
     void Update()
     {
-        //UpdateShaderValues();
+        UpdateShaderValues();
 
 
         if (IsNewPosition())
@@ -51,7 +51,7 @@ public class TexturesManager : MonoBehaviour
             UpdateShaderTextures();
 
             //puse esto
-            UpdateShaderValues();
+            //UpdateShaderValues();
 
             UpdateTextureMatrix();
         }
@@ -94,7 +94,7 @@ public class TexturesManager : MonoBehaviour
         Vector3Int indexPosR = textureMatrix.PosToIndex(cameraR.position);
         sphereR.UpdateShaderTexture("_Tex", textureMatrix.Get(indexPosR.x, indexPosR.y, indexPosR.z));
 
-        Debug.Log("updating texture");
+        //Debug.Log("updating texture");
     }
 
     public void UpdateShaderValues()
@@ -105,6 +105,7 @@ public class TexturesManager : MonoBehaviour
         //Debug.Log("Center: " + roomCenter);
         //Debug.Log("Radius: " + roomRadius);
 
+        //roomRadius /=10;
 
 
         Vector3 truncatedL = new Vector3(textureMatrix.Truncate(cameraL.position.x), textureMatrix.Truncate(cameraL.position.y), textureMatrix.Truncate(cameraL.position.z));

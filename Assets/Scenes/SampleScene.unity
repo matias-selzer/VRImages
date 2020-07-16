@@ -1532,7 +1532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1712816325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,7 +1829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b34ceeab632f04bb589a5d45981b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
+  moveSpeed: 0.1
   rotateSpeed: 50
   target: {fileID: 1872726912}
 --- !u!1 &1768408667
@@ -1941,8 +1941,8 @@ MonoBehaviour:
   - {fileID: 446267683}
   - {fileID: 713330105}
   - {fileID: 864928533}
-  moveTime: 0.5
-  moveDistance: 0.1
+  moveTime: 0.1
+  moveDistance: 0.02
   rotateSpeed: 50
   fpsCounter: {fileID: 1712816325}
   tm: {fileID: 729546364}
@@ -2073,7 +2073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22483970, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11493216, guid: c992ccddea898433a80e86c66815fefb, type: 3}
       propertyPath: m_Color.a

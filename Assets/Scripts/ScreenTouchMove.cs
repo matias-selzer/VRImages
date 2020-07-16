@@ -33,7 +33,7 @@ public class ScreenTouchMove : MonoBehaviour
                 x = x * 1;
                 Vector3 rot = target.rotation.eulerAngles;
                 rot.x = x;
-                target.rotation = Quaternion.Euler(rot);
+                //target.rotation = Quaternion.Euler(rot);
                 target.transform.position += target.transform.forward * moveSpeed * Time.deltaTime;
             }
         }
@@ -42,7 +42,7 @@ public class ScreenTouchMove : MonoBehaviour
             x = Mathf.Sin(Time.time);
             Vector3 rot = target.rotation.eulerAngles;
             rot.x = x * 2;
-            target.rotation = Quaternion.Euler(rot);
+            //target.rotation = Quaternion.Euler(rot);
         }
         
     }

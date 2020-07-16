@@ -21,7 +21,9 @@ public class RoomsInformationManager : MonoBehaviour
 
     void ParseRoomsInformation(string s)
     {
-        s=s.Replace('.', ',');
+        #if UNITY_EDITOR
+            s = s.Replace('.', ',');
+        #endif
         rooms = new List<RoomInfo>();
         string[] separator = new string[] { "$$$" };
         string[] eachRoomData = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
@@ -59,6 +61,17 @@ public class RoomsInformationManager : MonoBehaviour
             rooms.Add(newRoom);
         }
         Debug.Log("Total Habitaciones: "+rooms.Count);
+        //ImprimirRooms();
+    }
+
+    public void ImprimirRooms()
+    {
+        int i = 0;
+        foreach(RoomInfo r in rooms)
+        {
+            Debug.Log(i+" - "+r.GetCenter() + " - " + r.GetRadius());
+            i++;
+        }
     }
 
     IEnumerator LoadTextWebRequest()

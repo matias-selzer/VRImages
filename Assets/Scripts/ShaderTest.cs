@@ -10,6 +10,7 @@ public class ShaderTest : MonoBehaviour
     private float z = 0;
     public float timeStep;
     public Texture2D texturita;
+    public float radius;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +35,8 @@ public class ShaderTest : MonoBehaviour
         }
         cameraPos.z = -5 + z;
 
-        float roomRadius = 5;
         Vector3 roomCenter = new Vector3(-6, 1.5f, -6);
-        UpdateShaderVariable("_radio", roomRadius);
+        UpdateShaderVariable("_radio", radius);
         UpdateShaderVariable("_centro", roomCenter);
         UpdateShaderVariable("_pos", cameraPos);
         Vector3 truncatedPos = new Vector3(-5, 1.5f, -5);

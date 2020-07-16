@@ -56,13 +56,13 @@ public class TextureMatrix
     {
         Vector3Int output = new Vector3Int();
         //esto redondea al más cercano
-        //output.x = Convert.ToInt32((position.x - minx) / sampleDelta);
-        //output.y = Convert.ToInt32((position.y - miny) / sampleDelta);
-        //output.z = Convert.ToInt32((position.z - minz) / sampleDelta);
+        output.x = Convert.ToInt32((position.x - minx) / sampleDelta);
+        output.y = Convert.ToInt32((position.y - miny) / sampleDelta);
+        output.z = Convert.ToInt32((position.z - minz) / sampleDelta);
         //así trunca para abajo
-        output.x = (int)((position.x - minx) / sampleDelta);
-        output.y = (int)((position.y - miny) / sampleDelta);
-        output.z = (int)((position.z - minz) / sampleDelta);
+        //output.x = (int)((position.x - minx) / sampleDelta);
+        //output.y = (int)((position.y - miny) / sampleDelta);
+        //output.z = (int)((position.z - minz) / sampleDelta);
 
         return output;
     }

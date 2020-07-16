@@ -34,7 +34,7 @@ public class FollowPath : MonoBehaviour
             //index = (index + 1) % positions.Length;
         }
 
-        tm.UpdateShaderValues();
+        //tm.UpdateShaderValues();
     }
 
     // Update is called once per frame

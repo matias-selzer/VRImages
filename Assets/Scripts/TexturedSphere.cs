@@ -30,6 +30,7 @@ public class TexturedSphere : MonoBehaviour
 
     public void UpdateShaderVariable(string variableName,float f)
     {
+        //f=Mathf.Round(f * 100f) / 100f;
         myMaterial.SetFloat(variableName,f);
     }
 
