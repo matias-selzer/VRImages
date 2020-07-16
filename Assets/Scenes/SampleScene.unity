@@ -790,7 +790,7 @@ MonoBehaviour:
   YMax: 1.78
   ZMin: -10
   ZMax: 10
-  jumpDelta: 0.4
+  jumpDelta: 0.8
   toleranceDistanceCells: 3
   kernelRadioX: 1
   kernelRadioY: 1

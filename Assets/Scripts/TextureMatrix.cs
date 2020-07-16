@@ -60,9 +60,9 @@ public class TextureMatrix
         output.y = Convert.ToInt32((position.y - miny) / sampleDelta);
         output.z = Convert.ToInt32((position.z - minz) / sampleDelta);
         //así trunca para abajo
-        //output.x = (int)((position.x - minx) / sampleDelta);
-        //output.y = (int)((position.y - miny) / sampleDelta);
-        //output.z = (int)((position.z - minz) / sampleDelta);
+        output.x = (int)((position.x - minx) / sampleDelta);
+        output.y = (int)((position.y - miny) / sampleDelta);
+        output.z = (int)((position.z - minz) / sampleDelta);
 
         return output;
     }

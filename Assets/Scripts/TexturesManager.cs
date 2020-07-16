@@ -111,7 +111,7 @@ public class TexturesManager : MonoBehaviour
         Vector3 truncatedL = new Vector3(textureMatrix.Truncate(cameraL.position.x), textureMatrix.Truncate(cameraL.position.y), textureMatrix.Truncate(cameraL.position.z));
         Vector3 truncatedR = new Vector3(textureMatrix.Truncate(cameraR.position.x), textureMatrix.Truncate(cameraR.position.y), textureMatrix.Truncate(cameraR.position.z));
 
-        //Debug.Log("enviando x:"+cameraL.position.x+" - "+truncatedL.x);
+        Debug.Log("enviando x:"+cameraL.position.x+" - "+truncatedL.x);
         //Debug.Log("z:" + cameraL.position.z + " - " + truncatedL.z);
 
         sphereL.UpdateShaderVariable("_radio", roomRadius);
