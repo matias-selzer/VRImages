@@ -19,6 +19,10 @@ public class TexturesManager : MonoBehaviour
     private ImageLoader imageLoader;
     private RoomsInformationManager rooms;
 
+    private Position oldPosition;
+    private Position currentPosition;
+
+
     void Start()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -26,36 +30,44 @@ public class TexturesManager : MonoBehaviour
         rooms = GetComponent<RoomsInformationManager>();
         textureMatrix = new TextureMatrix(XMin, XMax, YMin, YMax, ZMin, ZMax, toleranceDistanceCells, jumpDelta);
 
-        UpdateActualPosition();
-        UpdateTextureMatrix();
+        currentPosition = new Position(cameraCenter.position, new Vector3(XMin, YMin, ZMin), jumpDelta);
+        oldPosition = new Position(cameraCenter.position, new Vector3(XMin, YMin, ZMin), jumpDelta);
 
-        //InvokeRepeating("UpdateShaderValues", 0, 0.01f);
-
-    
     }
 
 
     void Update()
     {
+
+        currentPosition = new Position(cameraCenter.position, new Vector3(XMin, YMin, ZMin), jumpDelta);
+
+        //currentPosition.ToString();
+
         UpdateShaderValues();
 
-
-        if (IsNewPosition())
+        if (IsNewNearestImage())
         {
+            currentPosition.ToString();
+
+            UpdateShaderTextures();
+
             UpdateRoomInformation();
 
             UpdateSpherePosition();
 
-            UpdateActualPosition();
-
-            UpdateShaderTextures();
-
-            //puse esto
-            //UpdateShaderValues();
-
             UpdateTextureMatrix();
         }
-        
+       
+    }
+
+    bool IsNewNearestImage()
+    {
+        bool isNew = !currentPosition.GetNearestDiscretePosition().Equals(oldPosition.GetNearestDiscretePosition());
+        if (isNew)
+        {
+            oldPosition = currentPosition;
+        }
+        return isNew;
     }
 
     void UpdateRoomInformation()
@@ -66,35 +78,14 @@ public class TexturesManager : MonoBehaviour
 
     void UpdateSpherePosition()
     {
-        sphereL.MoveSphere(cameraL.position);
-        sphereR.MoveSphere(cameraR.position);
-        //sphereL.MoveSphere(rooms.GetCenter());
-        sphereL.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius()*10;
-        sphereR.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius() * 10;
-        //sphereL.MoveSphere(cameraCenter.position);
-
-    }
-
-    void UpdateActualPosition()
-    {
-        textureMatrix.UpdateActualPosition(cameraCenter.position);
-    }
-
-    bool IsNewPosition()
-    {
-        return textureMatrix.IsNewPosition(cameraCenter.position);
+        sphereL.MoveSphere(cameraCenter.position);
+        sphereL.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius() * 5f;
     }
 
 
     void UpdateShaderTextures()
     {
-        Vector3Int indexPosL = textureMatrix.PosToIndex(cameraL.position);
-        sphereL.UpdateShaderTexture("_Tex", textureMatrix.Get(indexPosL.x,indexPosL.y,indexPosL.z));
-
-        Vector3Int indexPosR = textureMatrix.PosToIndex(cameraR.position);
-        sphereR.UpdateShaderTexture("_Tex", textureMatrix.Get(indexPosR.x, indexPosR.y, indexPosR.z));
-
-        //Debug.Log("updating texture");
+        sphereL.UpdateShaderTexture("_Tex", textureMatrix.Get(currentPosition.GetNearestIndex()));
     }
 
     public void UpdateShaderValues()
@@ -102,48 +93,37 @@ public class TexturesManager : MonoBehaviour
         Vector3 roomCenter = rooms.GetCenter();
         float roomRadius = rooms.GetRadius();
 
-        //Debug.Log("Center: " + roomCenter);
-        //Debug.Log("Radius: " + roomRadius);
-
-        //roomRadius /=10;
-
-
-        Vector3 truncatedL = new Vector3(textureMatrix.Truncate(cameraL.position.x), textureMatrix.Truncate(cameraL.position.y), textureMatrix.Truncate(cameraL.position.z));
-        Vector3 truncatedR = new Vector3(textureMatrix.Truncate(cameraR.position.x), textureMatrix.Truncate(cameraR.position.y), textureMatrix.Truncate(cameraR.position.z));
-
-        Debug.Log("enviando x:"+cameraL.position.x+" - "+truncatedL.x);
-        //Debug.Log("z:" + cameraL.position.z + " - " + truncatedL.z);
-
         sphereL.UpdateShaderVariable("_radio", roomRadius);
         sphereL.UpdateShaderVariable("_centro", roomCenter);
-        sphereL.UpdateShaderVariable("_pos", cameraL.position);
-        sphereL.UpdateShaderVariable("_posImg", truncatedL);
+        sphereL.UpdateShaderVariable("_pos", currentPosition.GetPosition());
+        sphereL.UpdateShaderVariable("_posImg", currentPosition.GetNearestDiscretePosition());
 
-        sphereR.UpdateShaderVariable("_radio", roomRadius);
-        sphereR.UpdateShaderVariable("_centro", roomCenter);
-        sphereR.UpdateShaderVariable("_pos", cameraR.position);
-        sphereR.UpdateShaderVariable("_posImg", truncatedR);
     }
 
     void UpdateTextureMatrix()
     {
         imageLoader.EmptyImageList();
-        Vector3Int indexPos = textureMatrix.GetActualIndexPosition();
+        Vector3Int indexPos = currentPosition.GetCurrentIndex();
+
+        imageLoader.UpdateCurrentDiscretePosition(currentPosition.GetDiscretePosition());
 
         //cuando agrego el eje y ya empieza a andar re mal en el teléfono
-
         for (int i = indexPos.x - kernelRadioX; (i <= indexPos.x + kernelRadioX) && (i < textureMatrix.GetLengthX()); i++)
+        {
             //for (int j = indexPos.y - 1; (j <= indexPos.y + 1) && (j < textureMatrix.GetLengthY()); j++)
-                for (int k = indexPos.z - kernelRadioZ; (k <= indexPos.z + kernelRadioZ) && (k < textureMatrix.GetLengthZ()); k++)
-                    if ((i >= 0) && (indexPos.y >= 0) && (k >= 0))
-                    {
+            for (int k = indexPos.z - kernelRadioZ; (k <= indexPos.z + kernelRadioZ) && (k < textureMatrix.GetLengthZ()); k++)
+            {
+                if ((i >= 0) && (indexPos.y >= 0) && (k >= 0))
+                {
                     if (!textureMatrix.HasTextureLoaded(i, indexPos.y, k))
-                            imageLoader.LoadImage(i, indexPos.y, k, textureMatrix);
+                    {
+                        imageLoader.LoadImage(i, indexPos.y, k, textureMatrix);
                     }
-        
+                }
+            }
+        }
 
-        textureMatrix.CleanMatrix();
-
+        textureMatrix.CleanMatrix(currentPosition.GetCurrentIndex());
     }
 
 

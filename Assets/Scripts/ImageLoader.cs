@@ -14,6 +14,7 @@ public class ImageLoader : MonoBehaviour
 
     public int maxCoroutinesNumber;
     private int concurrentCoroutinesNumber = 0;
+    private Vector3 currentDiscretePosition;
 
     void Awake()
     {
@@ -26,6 +27,11 @@ public class ImageLoader : MonoBehaviour
         {
             ExecuteLoadImage();
         }
+    }
+
+    public void UpdateCurrentDiscretePosition(Vector3 currentDiscretePosition)
+    {
+        this.currentDiscretePosition = currentDiscretePosition;
     }
 
     public void EmptyImageList()
@@ -51,10 +57,6 @@ public class ImageLoader : MonoBehaviour
         {
             Vector3Int imageToLoad = toLoadImages[0];
             toLoadImages.RemoveAt(0);
-            /*if (toLoadImages.Count != aux - 1)
-            {
-                Debug.Log("error");
-            }*/
             StartCoroutine(LoadLocalTextureWebRequestInMatrix(imageToLoad.x, imageToLoad.y, imageToLoad.z, textureMatrix));
         }
     }
@@ -63,10 +65,8 @@ public class ImageLoader : MonoBehaviour
     {
         concurrentCoroutinesNumber++;
 
-        Vector3 truncatedPos = textureMatrix.IndexToTruncatedPos(i, j, k);
-        
         //string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
-        string imageName = truncatedPos.x + "%20" + "1.68" + "%20" + truncatedPos.z;
+        string imageName = currentDiscretePosition.x + "%20" + "1.68" + "%20" + currentDiscretePosition.z;
         imageName = imageName.Replace('.', ',');
         imageName=imageName+ ".jpg";
 

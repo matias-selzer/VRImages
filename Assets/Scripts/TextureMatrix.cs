@@ -10,7 +10,6 @@ public class TextureMatrix
     private float sampleDelta;
     private float minx, miny, minz;
     private int toleranceDistance;
-    private Vector3Int actualIndexPosition;
     private int timeToClean=0;
 
     public TextureMatrix(float minx,float maxx,float miny,float maxy,float minz,float maxz,int distance,float sampleDelta)
@@ -46,55 +45,19 @@ public class TextureMatrix
         }
     }
 
+    public Texture2D Get(Vector3Int v)
+    {
+        return this.Get(v.x, v.y, v.z);
+    }
+
     public void Set(int i,int j,int k, Texture2D newTexture)
     {
         matrix[i, j, k] = newTexture;
         visitedPositions.Add(new Vector3Int(i,j,k));
     }
 
-    public Vector3Int PosToIndex(Vector3 position)
-    {
-        Vector3Int output = new Vector3Int();
-        //esto redondea al más cercano
-        output.x = Convert.ToInt32((position.x - minx) / sampleDelta);
-        output.y = Convert.ToInt32((position.y - miny) / sampleDelta);
-        output.z = Convert.ToInt32((position.z - minz) / sampleDelta);
-        //así trunca para abajo
-        output.x = (int)((position.x - minx) / sampleDelta);
-        output.y = (int)((position.y - miny) / sampleDelta);
-        output.z = (int)((position.z - minz) / sampleDelta);
 
-        return output;
-    }
-
-    public Vector3 IndexToTruncatedPos(int i, int j, int k)
-    {
-        float x = Truncate((i * sampleDelta) + minx);
-        float y = Truncate((j * sampleDelta) + miny);
-        float z = Truncate((k * sampleDelta) + minz);
-        return new Vector3(x, y, z);
-    }
-
-    public float Truncate(float f)
-    {
-        return Mathf.Floor(f / sampleDelta) * sampleDelta;
-    }
-
-    public bool IsNewPosition(Vector3 position)
-    {
-        Vector3Int newPos = PosToIndex(position);
-        return !(newPos.x == actualIndexPosition.x && newPos.y == actualIndexPosition.y && newPos.z == actualIndexPosition.z);
-    }
-
-    public void UpdateActualPosition(Vector3 position)
-    {
-        Vector3Int newPosition = PosToIndex(position);
-        actualIndexPosition = newPosition;
-        //Debug.Log(position);
-        //Debug.Log("*********************  Estoy en: " + newPosition);
-    }
-
-    public void CleanMatrix()
+    public void CleanMatrix(Vector3Int actualIndexPosition)
     {
         timeToClean=(timeToClean+1)%10;
         if (timeToClean == 0) {
@@ -118,9 +81,9 @@ public class TextureMatrix
         System.GC.Collect();
     }
 
-    public bool HasActualTexture()
+    public bool HasActualTexture(Vector3Int indexPosition)
     {
-        return Get(actualIndexPosition.x, actualIndexPosition.y, actualIndexPosition.z) != null;
+        return Get(indexPosition.x, indexPosition.y, indexPosition.z) != null;
     }
 
     private void RemoveFromMatrix(Vector3Int pos)
@@ -131,11 +94,6 @@ public class TextureMatrix
     private void RemoveVisitedPosition(int index)
     {
         visitedPositions.RemoveAt(index);
-    }
-
-    public Vector3Int GetActualIndexPosition()
-    {
-        return actualIndexPosition;
     }
 
     public int GetLengthX()
