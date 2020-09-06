@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewOffice.unity
     guid: aed1925d8d16b584ca127f4ebbfef156
+  - enabled: 0
+    path: Assets/VR-Step/Demo Scenes/UnityNativeVRJumpGame.unity
+    guid: d726414c48b872a45b8bfe030a43ece9
   m_configObjects: {}

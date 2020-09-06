@@ -38,7 +38,7 @@ public class TexturesManager : MonoBehaviour
 
     void Update()
     {
-
+        //Debug.Log("hola: "+cameraCenter.position);
         currentPosition = new Position(cameraCenter.position, new Vector3(XMin, YMin, ZMin), jumpDelta);
 
         //currentPosition.ToString();
@@ -47,7 +47,7 @@ public class TexturesManager : MonoBehaviour
 
         if (IsNewNearestImage())
         {
-            currentPosition.ToString();
+            //currentPosition.ToString();
 
             UpdateShaderTextures();
 
@@ -85,6 +85,7 @@ public class TexturesManager : MonoBehaviour
 
     void UpdateShaderTextures()
     {
+        //Debug.Log(textureMatrix.Get(currentPosition.GetNearestIndex()) == null);
         sphereL.UpdateShaderTexture("_Tex", textureMatrix.Get(currentPosition.GetNearestIndex()));
     }
 
@@ -102,6 +103,7 @@ public class TexturesManager : MonoBehaviour
 
     void UpdateTextureMatrix()
     {
+        //Debug.Log("nueva discrete position: "+ currentPosition.GetDiscretePosition());
         imageLoader.EmptyImageList();
         Vector3Int indexPos = currentPosition.GetCurrentIndex();
 
@@ -117,6 +119,7 @@ public class TexturesManager : MonoBehaviour
                 {
                     if (!textureMatrix.HasTextureLoaded(i, indexPos.y, k))
                     {
+                        
                         imageLoader.LoadImage(i, indexPos.y, k, textureMatrix);
                     }
                 }
