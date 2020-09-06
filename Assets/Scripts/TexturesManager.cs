@@ -79,7 +79,7 @@ public class TexturesManager : MonoBehaviour
     void UpdateSpherePosition()
     {
         sphereL.MoveSphere(cameraCenter.position);
-        sphereL.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius() * 5f;
+        sphereL.transform.localScale = new Vector3(1, 1, -1) * rooms.GetRadius() * 1.2f;
     }
 
 

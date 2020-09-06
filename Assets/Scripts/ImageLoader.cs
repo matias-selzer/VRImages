@@ -66,7 +66,7 @@ public class ImageLoader : MonoBehaviour
         concurrentCoroutinesNumber++;
 
         //string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
-        string imageName = currentDiscretePosition.x + "%20" + "1.68" + "%20" + currentDiscretePosition.z;
+        string imageName = currentDiscretePosition.x + "%20" + "1.6" + "%20" + currentDiscretePosition.z;
         imageName = imageName.Replace('.', ',');
         imageName=imageName+ ".jpg";
 
