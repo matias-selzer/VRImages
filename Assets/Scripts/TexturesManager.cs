@@ -94,7 +94,7 @@ public class TexturesManager : MonoBehaviour
         Vector3 roomCenter = rooms.GetCenter();
         float roomRadius = rooms.GetRadius();
 
-        sphereL.UpdateShaderVariable("_radio", roomRadius);
+        sphereL.UpdateShaderVariable("_radio", 1000);
         sphereL.UpdateShaderVariable("_centro", roomCenter);
         sphereL.UpdateShaderVariable("_pos", currentPosition.GetPosition());
         sphereL.UpdateShaderVariable("_posImg", currentPosition.GetNearestDiscretePosition());

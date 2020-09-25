@@ -215,6 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259302175}
+  - component: {fileID: 259302176}
   m_Layer: 0
   m_Name: VRMode
   m_TagString: Untagged
@@ -238,6 +239,21 @@ Transform:
   m_Father: {fileID: 1872726912}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259302176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259302174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b34ceeab632f04bb589a5d45981b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.2
+  rotateSpeed: 50
+  target: {fileID: 1872726912}
 --- !u!1 &411184301
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 116628, guid: 020f1a656f6748346ac59c45c4b5abf7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 490206, guid: 020f1a656f6748346ac59c45c4b5abf7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -859,7 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localURL: D:\xampp2\htdocs\img\picturesNuevas\todas
-  webURL: http://192.168.0.5:1234/img/picturesNuevas/todas/
+  webURL: http://192.168.0.5:1234/img/picturesNuevas/noCollisions/
   useWebURL: 1
   maxCoroutinesNumber: 3
 --- !u!114 &729546364
@@ -874,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a8acdb86c294e4dab0eaff5b7be525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraCenter: {fileID: 1033478689}
+  cameraCenter: {fileID: 1872726912}
   cameraL: {fileID: 414301680}
   cameraR: {fileID: 759961322}
   XMin: 0
@@ -988,7 +1004,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1536
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1164,12 +1180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3741207c1bd713940b7a7fc7a0f4886c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1033478689 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 442196, guid: 020f1a656f6748346ac59c45c4b5abf7,
-    type: 3}
-  m_PrefabInstance: {fileID: 558590189}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1058369545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,7 +2030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b34ceeab632f04bb589a5d45981b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.2
+  moveSpeed: 0.5
   rotateSpeed: 50
   target: {fileID: 1872726912}
 --- !u!1 &1768408667
@@ -2072,7 +2082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1872726912
 Transform:
   m_ObjectHideFlags: 0
@@ -2081,7 +2091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872726911}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8, y: 1.68, z: 4}
+  m_LocalPosition: {x: 0.4, y: 1.68, z: 7.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1762115541}
