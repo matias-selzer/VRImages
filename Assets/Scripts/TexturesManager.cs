@@ -22,6 +22,14 @@ public class TexturesManager : MonoBehaviour
     private Position oldPosition;
     private Position currentPosition;
 
+    public ScreenTouchMove cameraMover;
+
+    public bool itsTime = false;
+
+    void TimeToMove()
+    {
+        itsTime = true;
+    }
 
     void Start()
     {
@@ -33,6 +41,7 @@ public class TexturesManager : MonoBehaviour
         currentPosition = new Position(cameraCenter.position, new Vector3(XMin, YMin, ZMin), jumpDelta);
         oldPosition = new Position(cameraCenter.position, new Vector3(XMin, YMin, ZMin), jumpDelta);
 
+        Invoke("TimeToMove", 5);
     }
 
 
@@ -44,6 +53,19 @@ public class TexturesManager : MonoBehaviour
         //currentPosition.ToString();
 
         UpdateShaderValues();
+
+
+
+        if (itsTime)
+        {
+            bool hasImage= textureMatrix.HasTextureLoaded(currentPosition.GetCurrentIndex().x, currentPosition.GetCurrentIndex().y, currentPosition.GetCurrentIndex().z);
+            cameraMover.canMove = hasImage;
+            if (!hasImage) cameraMover.GoBack();
+            //Debug.Log(currentPosition.GetCurrentIndex()+" - "+textureMatrix.HasTextureLoaded(currentPosition.GetCurrentIndex().x, currentPosition.GetCurrentIndex().y, currentPosition.GetCurrentIndex().z));
+        }
+
+
+
 
         if (IsNewNearestImage())
         {

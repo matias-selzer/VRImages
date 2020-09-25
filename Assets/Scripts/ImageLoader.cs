@@ -105,7 +105,10 @@ public class ImageLoader : MonoBehaviour
                 //Debug.Log("ya traje imagen: " + i + ", " + j + ", " + k);
                 concurrentCoroutinesNumber--;
                 Texture2D myTexture = DownloadHandlerTexture.GetContent(www);
-                textureMatrix.Set(i, j, k, myTexture);
+                if (myTexture.width != 8)
+                {
+                    textureMatrix.Set(i, j, k, myTexture);
+                }
                 //www.Dispose();
                 
             }

@@ -69,6 +69,10 @@ public class Position
         return Mathf.Round(f / delta) * delta;
     }
 
+    public Vector3 GetWorldPosition()
+    {
+        return position;
+    }
 
 
 

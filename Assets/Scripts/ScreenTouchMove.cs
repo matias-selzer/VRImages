@@ -6,11 +6,12 @@ public class ScreenTouchMove : MonoBehaviour
 {
     public float moveSpeed, rotateSpeed;
     public Transform target;
+    public bool canMove = true;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -34,7 +35,12 @@ public class ScreenTouchMove : MonoBehaviour
                 Vector3 rot = target.rotation.eulerAngles;
                 rot.x = x;
                 //target.rotation = Quaternion.Euler(rot);
-                target.transform.position += target.transform.forward * moveSpeed * Time.deltaTime;
+                if (canMove)
+                {
+                    //Debug.Log("muevo la camara");
+                    target.transform.position += target.transform.forward * moveSpeed * Time.deltaTime;
+                }
+                //.Log(canMove);
             }
         }
         else
@@ -45,5 +51,10 @@ public class ScreenTouchMove : MonoBehaviour
             //target.rotation = Quaternion.Euler(rot);
         }
         
+    }
+
+    public void GoBack()
+    {
+        target.transform.position -= target.transform.forward*2 * moveSpeed * Time.deltaTime;
     }
 }
