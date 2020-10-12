@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localURL: D:\xampp2\htdocs\img\picturesNuevas\todas
-  webURL: http://192.168.0.5:1234/img/picturesNuevas2/
+  webURL: http://192.168.0.5:1234/img/forest/
   useWebURL: 1
   maxCoroutinesNumber: 3
 --- !u!114 &729546364
@@ -964,12 +964,12 @@ MonoBehaviour:
   cameraL: {fileID: 414301680}
   cameraR: {fileID: 759961322}
   XMin: 0
-  XMax: 23.5
-  YMin: 1.6
+  XMax: 30
+  YMin: 1.5
   YMax: 1.78
   ZMin: 0
-  ZMax: 8.6
-  jumpDelta: 1
+  ZMax: 30
+  jumpDelta: 0.5
   toleranceDistanceCells: 3
   kernelRadioX: 2
   kernelRadioY: 1
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e14eebd5d09e94eb4d496fdb77bb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileURL: http://192.168.0.5:1234/img/rooms2.txt
+  fileURL: http://192.168.0.5:1234/img/forest/rooms.txt
   radiusOffset: 0
 --- !u!1 &759961321
 GameObject:
@@ -1263,6 +1263,8 @@ GameObject:
   - component: {fileID: 1058369546}
   - component: {fileID: 1058369548}
   - component: {fileID: 1058369547}
+  - component: {fileID: 1058369549}
+  - component: {fileID: 1058369550}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1277,7 +1279,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058369545}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1334,6 +1336,38 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1058369549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058369545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b34ceeab632f04bb589a5d45981b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.5
+  rotateSpeed: 50
+  target: {fileID: 1058369546}
+  canMove: 0
+--- !u!114 &1058369550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058369545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c97194f8153d174a998e7d35ad6990e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xJump: -0.0003
+  yJump: 0
+  zJump: 0
+  seconds: 0.001
 --- !u!1 &1138014426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +2002,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -1978,7 +2012,7 @@ PrefabInstance:
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4326615703871543833, guid: a17eed532b9768e49a1f50f64f25b705,
         type: 3}
@@ -2163,8 +2197,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872726911}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 9.26, y: 1.68, z: 7.3}
+  m_LocalRotation: {x: 0, y: 0.69176996, z: 0, w: -0.722118}
+  m_LocalPosition: {x: 26.2, y: 1.68, z: 8.337295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1762115541}

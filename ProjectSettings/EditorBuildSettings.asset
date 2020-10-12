@@ -20,10 +20,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestSimple.unity
     guid: 5223953d7467906488d19a87d7464335
+  - enabled: 0
+    path: Assets/VR-Step/Demo Scenes/UnityNativeVRJumpGame.unity
+    guid: d726414c48b872a45b8bfe030a43ece9
   - enabled: 1
     path: Assets/Scenes/NewOffice.unity
     guid: aed1925d8d16b584ca127f4ebbfef156
   - enabled: 0
-    path: Assets/VR-Step/Demo Scenes/UnityNativeVRJumpGame.unity
-    guid: d726414c48b872a45b8bfe030a43ece9
+    path: Assets/Scenes/Forest.unity
+    guid: ae0b5d15c935b874b878898d0947e84f
   m_configObjects: {}

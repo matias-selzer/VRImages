@@ -66,9 +66,14 @@ public class ImageLoader : MonoBehaviour
         concurrentCoroutinesNumber++;
 
         //string imageName = truncatedPos.x + "%20" + truncatedPos.y + "%20" + truncatedPos.z;
-        string imageName = currentDiscretePosition.x + "%20" + "1.6" + "%20" + currentDiscretePosition.z;
+        //1.5 para el forest, 1.6 para el studio office
+        string imageName = currentDiscretePosition.x + "%20" + "1.5" + "%20" + currentDiscretePosition.z;
+        ////para el studio
         imageName = imageName.Replace('.', ',');
-        imageName=imageName+ ".jpg";
+        //para el forest
+        imageName = imageName.Replace(',', '.');
+
+        imageName =imageName+ ".jpg";
 
         string urlToUse = "";
 
@@ -84,7 +89,7 @@ public class ImageLoader : MonoBehaviour
         //Debug.Log("URL: " + urlToUse);
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(webURL + imageName, false);
-
+        Debug.Log(webURL + imageName);
         yield return www.SendWebRequest();
 
         while (!www.isDone)

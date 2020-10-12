@@ -59,7 +59,7 @@ public class TextureMatrix
 
     public void CleanMatrix(Vector3Int actualIndexPosition)
     {
-        timeToClean=(timeToClean+1)%4;
+        timeToClean=(timeToClean+1)%1;
         if (timeToClean == 0) {
             //esto es así porque voy borrando elementos de la lista mientras la recorro
             for (int i = visitedPositions.Count - 1; i >= 0; i--)
